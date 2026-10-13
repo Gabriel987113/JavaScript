@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function validarEdad(){
+
+            let nombre=document.getElementById("nombre").value;
+            let edad=document.getElementById("edad").value;
+            if(edad>=18){
+               document.getElementById("mensaje").value="Bienvenido a la web, "+ nombre;
+            }else{
+               document.getElementById("mensaje").value="Lo sentimos,no puedes acceder "+ nombre;
+            }
+        }
+    </script>
+</head>
+<body>
+    <label>Nombre:</label>
+    <input type="text" id="nombre">
+
+    <label>Edad:</label>
+    <input type="number" id="edad" autofocus>
+
+    <button onclick="validarEdad()">Validar</button>
+
+    <br><br>
+    <label>Mensaje</label>
+    <br>
+    <textarea id="mensaje" rows="20" cols="30"></textarea>
+
+
+</body>
+</html>
