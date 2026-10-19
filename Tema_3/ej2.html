@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+         let caracter
+        function ver(){
+
+            let frase=document.getElementById("frase").value;
+
+            let numero=Math.floor(Math.random()*frase.length);
+             caracter=frase.charAt(numero);
+            document.getElementById("caracter").value=caracter;
+
+            if(caracter==caracterParada){
+                alert("Se ha encontrado el caracter de parada");
+                return;
+            }
+        }
+
+        let caracterParada
+        function parada(){
+            let frase=document.getElementById("frase").value;
+
+            let numero=Math.floor(Math.random()*frase.length);
+            caracterParada=frase.charAt(numero);
+            document.getElementById("parada").value=caracterParada;
+        }
+    </script>
+</head>
+<body>
+    <label>  Introduce una frase</label>
+    <input type="text" id="frase">  
+    <input type="text" id="caracter">
+    <input type="text" id="parada"> <br><br>
+
+    <button type="button" onclick="ver()">Ver</button>
+    <button type="button" onclick="parada()">Parada</button>
+
+</body>
+</html>

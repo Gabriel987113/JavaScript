@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let arrayNumeros=[];
+        let suma=0;
+       
+        
+       function ponerNumeros(){
+        let valorVacio=document.getElementById("numero").value
+        let numero=Number(document.getElementById("numero").value);
+        if(valorVacio.trim() !=="" &&  !isNaN(numero)==true){
+            
+            if(numero==0){
+                if(arrayNumeros.length==0){
+                    document.getElementById("salida").value=
+                    "No has introducido nignun numero";
+                    return;
+                }
+                media=suma/arrayNumeros.length;
+                document.getElementById("salida").value="Los numeros introducidos son:" +
+                arrayNumeros.join(", ") +
+                "\n"+"La media es: " + media;
+                return;
+
+            }
+
+            arrayNumeros.push(numero);
+
+            //MEDIA
+            suma=suma+numero;
+        }else{
+            document.getElementById("salida").value="Debes introducir un numero."
+            
+        }
+         
+
+
+           
+        }
+    </script>
+</head>
+<body>
+    <label>Introduce un numero</label>
+    <input type="number" id="numero">  <br><br>
+
+    <input type="text" id="salida" size="50" readonly>  <br><br>
+
+    <button type="button" onclick="ponerNumeros()">Poner numero</button>
+    
+</body>
+</html>
