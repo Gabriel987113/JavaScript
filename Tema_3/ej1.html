@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let numeros=[];
+
+        function añadir(){
+
+           let num=document.getElementById("numero").value;
+
+        if(num.trim()!=="" && !isNaN(num)==true){
+ 
+            if(num==0){
+               if(numeros.length==0){
+                    document.getElementById("salida").value="Debes introducir algun numero";
+                    return;
+                }else{
+                   let suma=0;
+
+                   for(let i=0; i<numeros.length; i++){
+                    suma=suma+numeros[i];
+                   }
+
+                   let media=suma/numeros.length;
+                   document.getElementById("salida").value=
+                   "Los numeros introducidos son:" + numeros.join(", ") + // El join() sirve para convertir los elementos 
+                   // del array en un texto, separado de una coma o lo que pongas
+
+                   " La media es:" + media;
+                }
+
+            }else{
+               numeros.push(Number(num));//el push añade los numeros al final del array
+               document.getElementById("numero").value="";
+            }
+
+
+        }else{
+            document.getElementById("salida").value="Debes introducir un numero";
+        }
+
+
+        }
+    </script>
+</head>
+<body>
+    <label>Introduce un numero</label>
+    <input type="number" id="numero">  <br><br>
+
+    <input type="text" id="salida" size="50" readonly> <br><br>
+
+    <button type="button" onclick="añadir()">Añadir numero</button>
+
+</body>
+</html>

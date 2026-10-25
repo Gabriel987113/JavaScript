@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    let frutas=["Naranjas","Manzanas","Platanos","Cerezas Mango","Mango y Papayas"];
+    let precios=["1","2","3","3,5","4"];
+    
+    function buscarPrecio(){
+        let encontrado=false;
+     let frutaBuscar=document.getElementsByTagName("input")[0].value;
+        for(let i=0; i<frutas.length; i++){
+            if(frutaBuscar.toLowerCase()==frutas[i].toLowerCase()){
+               document.getElementsByTagName("textarea")[0].value=frutas[i] + "cuestan " + precios[i] +" euros el kilo";
+               encontrado=true;
+            }
+        }
+
+        if(!encontrado){
+            document.getElementsByTagName("textarea")[0].value="Lo sentimos, no tenemos " + frutaBuscar;
+        }
+    }
+    </script>
+</head>
+<body>
+   <label>Nombre de la fruta a buscar:</label>
+   <input type="text" onchange="buscarPrecio()"> <br><br>
+
+   <label>Precio</label>
+   <textarea></textarea>
+
+</body>
+</html>

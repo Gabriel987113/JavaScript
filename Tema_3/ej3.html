@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //El metodo indexOf() busca el texto y devuelve la 
+        // posicion de su primer caracter. Las posiciones empiezan en 0, no en 1.
+        let miCadena="cabrales, torta del casar, idiazabal";
+        let miCadenaMayusculas="Cabrales, Torta del Casar, Idiazabal";
+
+       function verPosicion(){
+        let tipoQueso=document.getElementById("tipoQueso").value;
+
+        if (tipoQueso.trim() == "") {
+          alert("Debes escribir un queso");
+          return;
+        }
+        
+        //El metodo indexOf() busca la palabra 
+        // y devuelve la posicion de la primera letra de esa palabra dentro de la cadena.
+        let posicion=miCadena.indexOf(tipoQueso);
+
+        if(posicion == -1){
+            posicion=miCadenaMayusculas.indexOf(tipoQueso);
+        }
+
+        if(posicion != -1){
+            alert("LA posicion es:" + posicion);
+        }else{
+            alert("No se ha encontradp el queso")
+        }
+       }
+       
+    </script>
+</head>
+<body>
+   <label>Escribe el queso</label>
+   <input type="text" id="tipoQueso">
+   
+   <button type="button" onclick="verPosicion()">Ver posicion</button>
+
+</body>
+</html>
