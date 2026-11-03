@@ -5,13 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script>
-      
-      
       function comprobar(){
+        let comprobacionAño=document.getElementById("año").value;
+        let comprobacionMes=document.getElementById("mes").value;
+        let comprobacionDia=document.getElementById("dia").value;
 
-        let año=document.getElementById("año").value;
-        let mes=document.getElementById("mes").value;
-        let dia=document.getElementById("dia").value;
+        if(comprobacionAño=="" || comprobacionDia=="" || comprobacionMes==""){
+           alert("No debes dejar ningun campo vacio");
+           return;
+        }
+
+        let año=Number(document.getElementById("año").value);
+        let mes=Number(document.getElementById("mes").value);
+        let dia=Number(document.getElementById("dia").value);
+
+        
+        if(año<=0 ||dia<=0 || mes<=0){
+           alert("No puede ser 0 o inferior a 0 el numero");
+           return;
+        }
+
+        let fechaHoy=new Date();
+        let milisegundosFechaHoy=fechaHoy.getTime();
+
+        let fecha18años=new Date(año + 18, mes - 1, dia);
+        let milisegundosFecha18=fecha18años.getTime();
+
+        let mensaje="";
+        if(milisegundosFechaHoy>=milisegundosFecha18){
+           mensaje="Es mayor de edad";
+        }else{
+           mensaje="Es menor de edad";
+        }
+
+        document.getElementById("areaMensaje").innerHTML="Resultado:"+mensaje;
 
         
       }
