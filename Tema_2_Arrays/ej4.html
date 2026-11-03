@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+     let nums=[];
+     function generarAsteriscos(){
+
+        //VACIARLO CADA VEZ QUE LE DEMOS A GENERAR ARRAY PARA QUE NO SE ALMACENEN
+        nums = []; //VACIAR EL ARRAY TAMBIEN
+        document.getElementById("resultado").innerHTML="";
+
+        //GENERAR LOS NUMEROS ALEATORIOS Y METERLOS EN EL ARRRAY
+        let numAleatorio;
+        for(let i=0; i<20; i++){
+            numAleatorio=Math.floor(Math.random() * (50-1+1))+1;
+            nums.push(numAleatorio);
+        }
+
+        //HACER LO DE LOS ASTERISCOS CON 2 FOR.
+        for(let i=0; i<nums.length; i++){
+            let asteriscos="";
+            for(let j=0; j<nums[i]; j++){
+                asteriscos = asteriscos + "*";
+            }
+            document.getElementById("resultado").innerHTML+= asteriscos + "<br>";
+        }
+     }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generarAsteriscos()">Generar asteriscos</button>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>
