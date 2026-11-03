@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let letraAleatoria;
+        function ver(){
+            
+
+           let frase=document.getElementById("frase").value;
+            let numeroAleatorio=Math.floor(Math.random() * frase.length);
+            letraAleatoria=frase.charAt(numeroAleatorio);
+
+            document.getElementById("letraAleatoria").value=letraAleatoria;
+
+            if(letraParada==letraAleatoria){
+               alert("Has ganado !!!!");
+               document.getElementById("ver").disabled=true;
+               return;
+            }
+             
+
+        }
+        
+        let letraParada;
+        function caracterDeParada(){
+            let frase=document.getElementById("frase").value;
+            if(frase.length==0 || frase.trim()==""){
+                alert("Debes introducir una frase");
+                return;
+            }
+
+            let numeroAleatorio=Math.floor(Math.random() * frase.length);
+
+            letraParada=frase.charAt(numeroAleatorio);
+
+            document.getElementById("caracterParada").value=letraParada;
+
+            document.getElementById("ver").disabled=false;
+
+        }
+    </script>
+</head>
+<body>
+    <label>Introduce una frase</label>
+    <input type="text" id="frase"> <br><br>
+
+    <label>Letra aleatoria de la frase:</label>
+    <input type="text" id="letraAleatoria"> <br><br>
+
+    <label>Caracter de parada:</label>
+    <input type="text" id="caracterParada"> <br><br>
+
+    <button type="sumbit" onclick="ver()" id="ver" disabled>Ver</button>
+    <button type="sumbit" onclick="caracterDeParada()">Parada</button>
+</body>
+</html>

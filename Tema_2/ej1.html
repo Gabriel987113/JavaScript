@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let numeros=[]; 
+        function añadirNumero(){
+            //PRIMERO NO LO PASAMOS A NUMERO Y COMPROBAMOS QUE NO ESTE VACIO EL CAMPO
+            let valor = document.getElementById("numero").value;
+
+            if(valor.trim()==""){
+                document.getElementById("salida").value="Debes introducir un numero";
+                return;
+            }
+
+          //DESPUES LO PASAMOS A NUMERO
+          let numero=Number(document.getElementById("numero").value);
+
+            //SI ES UN NUMERO ENTRA EN EL IF
+            if(!isNaN(numero)==true){
+                if(numero==0){
+
+                    if(numeros.length==0){
+                        document.getElementById("salida").value="Debes introducir un numero primero!!";
+                        return;
+                    }
+
+                 let suma=0;
+                 for(let i=0; i<numeros.length; i++){
+                    suma=suma+numeros[i];
+                 }
+
+                 let media=suma / numeros.length;
+                 document.getElementById("salida").value="Los numeros introducidos son:" + 
+                 numeros.join(", ") +  " y la media es:" + media;
+
+                 numeros = [];
+                }else{
+                 numeros.push(numero);
+                 document.getElementById("numero").value="";
+                }
+            }else{
+               document.getElementById("salida").value="Debes introducir un numero!!";
+            }
+
+
+        }
+    </script>
+</head>
+<body>
+    <label>Introduce un numero:</label>
+    <input type="number" id="numero"> <br><br>
+
+    <input type="text" id="salida"> <br><br>
+
+    <button type="submit" onclick="añadirNumero()">Añadir numero</button>
+</body>
+</html>

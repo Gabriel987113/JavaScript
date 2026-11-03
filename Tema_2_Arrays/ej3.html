@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //guarda todas las apuestas.
+        let apuestasFinal = [];
+        let combinacionGanadora = [];
+        let hayGanador=false;
+
+        function generarApuesta(){
+            /*
+            Al pulsar varias veces el botón, los mensajes anteriores se acumularían
+            Cada vez que le demos al boton se vacia.
+            */
+            document.getElementById("mensaje").innerHTML = "";
+            document.getElementById("jugadorGanador").innerHTML = "";
+            document.getElementById("combinacionGanadora").innerHTML = "";
+            /*
+             El primero (i) genera las 50 apuestas.
+             El segundo (j) genera los 6 números de cada apuesta.
+            */
+
+            for(let i=0; i<50; i++){
+               let apuesta = [];
+                
+                //Mientras que el array sea inferior a 6 seguira generando numeros
+                while(apuesta.length < 6){
+                    
+                    //Math.floor(Math.random() * (max - min + 1)) + min
+                    let numAleatorio = Math.floor(Math.random()* (49-1+1))+1;
+                    if(!apuesta.includes(numAleatorio)){
+                        apuesta.push(numAleatorio);
+                    }
+                }
+                //Metemos el array apuesta dentro del array apuestasFinal.
+                apuestasFinal.push(apuesta);
+            }
+
+            //MOSTRAR LOS MENSAJES DE LAS APUESTAS.
+            let mensaje=document.getElementById("mensaje");
+            for(let i=0; i<apuestasFinal.length; i++){
+                mensaje.innerHTML = mensaje.innerHTML + "Jugador " + (i+1) + ": " +
+                apuestasFinal[i] + "<br>";
+            }
+
+            //GENERAR COMBINACION GANADORA
+            while(combinacionGanadora.length<6){
+              let numAleatorioGanadora=Math.floor(Math.random() * (49-1+1)) + 1;
+              if(!combinacionGanadora.includes(numAleatorioGanadora)){
+                combinacionGanadora.push(numAleatorioGanadora);
+              } 
+            }
+
+            document.getElementById("combinacionGanadora").innerHTML =
+            "Combinación ganadora: " + combinacionGanadora;
+
+            //El primer for recorre los 50 jugadores.
+            for(let i=0; i<apuestasFinal.length; i++){
+
+                let aciertos=0;
+                //El segundo for recorre los 6 números de la combinación ganadora.
+                for(let j=0; j<6; j++){
+                    if(apuestasFinal[i].includes(combinacionGanadora[j])){
+                        aciertos++;
+                    }
+                }
+
+                if(aciertos==6){
+                    hayGanador=true;
+                    document.getElementById("jugadorGanador").innerHTML+=
+                    "Ha ganado el jugador " +(i+1) + "<br>"
+                }
+            }
+            
+            //SI NO HA GANADO NADIE
+            if(!hayGanador){
+                 document.getElementById("jugadorGanador").innerHTML =
+                 "No ha habido ningún ganador.";
+            }
+
+            //VACIAR LOS ARRAY PARA VOLVER A EMPEZAR
+            hayGanador=false;
+            apuestasFinal = [];
+            combinacionGanadora = [];
+        }
+
+        
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generarApuesta()">GENERAR APUESTA</button>
+    <div id="mensaje">
+
+    </div> <br><br>
+
+    <div id="combinacionGanadora">
+        
+    </div> <br><br>
+
+    <div id="jugadorGanador">
+
+    </div>
+</body>
+</html>
