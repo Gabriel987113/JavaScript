@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function generarApuesta(){
+            // Limpiamos los resultados de la partida anterior
+            document.getElementById("resultado").innerHTML = "";
+            document.getElementById("combinacionGanadora").innerHTML = "";
+            document.getElementById("ganador").innerHTML = "";
+
+           let apuestasFinal = [];
+
+            for(let i=0; i<50; i++){
+              let apuesta = new Set();
+             
+                while(apuesta.size < 6){
+                 let numero=Math.floor(Math.random() * (49 - 1 + 1))+1;
+                 apuesta.add(numero);
+                }
+
+              apuestasFinal.push(apuesta);
+            }
+
+            //COMBINACION GANADORA
+            let combinacionGanadora = new Set();
+            while(combinacionGanadora.size<6){
+                let numero=Math.floor(Math.random() * (49 - 1 + 1))+1;
+                combinacionGanadora.add(numero);
+            }
+
+            let ganadora=Array.from(combinacionGanadora).join(", ");
+            document.getElementById("combinacionGanadora").innerHTML=
+            "Combinacion ganadora: " + ganadora;
+            
+
+            //MOSTRAR LOS RESULTADOS DE LAS COMBINACIONES 
+            let resultado="";
+
+            for(let i=0; i<apuestasFinal.length; i++){
+               resultado+="JUGADOR " +(i+1) + ": ";
+               resultado+=Array.from(apuestasFinal[i]).join(", ") + "<br>";
+            }
+
+            document.getElementById("resultado").innerHTML=resultado;
+
+
+            //COMPROBAR QUIEN HA GANADO
+            /*
+             numero es la variable que recoge cada elemento.
+             of significa que vamos a recorrer los elementos de...
+             combinacionGanadora es la colección que vamos a recorrer.
+            */
+           let hayGanador=false;
+            for(let i=0; i<apuestasFinal.length; i++){
+
+                let aciertos = 0;
+
+                for(let numero of combinacionGanadora){
+                    if(apuestasFinal[i].has(numero)){
+                     aciertos++;
+                    }
+                }
+
+                if(aciertos==6){
+                    hayGanador=true;
+                    document.getElementById("ganador").innerHTML=
+                    "Ha ganado el jugador " + (i+1);
+                }
+            }
+
+            if(!hayGanador){
+                document.getElementById("ganador").innerHTML=
+                "No ha ganado nadie";
+            }
+
+          
+
+           
+
+            
+        }
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generarApuesta()">Generar apuesta</button>
+    <div id="resultado">
+
+    </div> <br><br>
+    <div id="combinacionGanadora">
+
+    </div> <br><br>
+    <div id="ganador">
+
+    </div>
+</body>
+</html>
