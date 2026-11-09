@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+       Desarrolla un script que:
+       - Elimine los participantes duplicados.
+       -  Muestre cuántos participantes únicos hay.
+       - Compruebe si el participante 110 está registrado.
+       - Compruebe si el participante 120 está registrado.
+        */
+    let participantes = [102, 105, 102, 108, 110, 105, 112, 108, 115];
+              
+    function generar(){
+
+        let participantesSinDuplicar = new Set();
+        for(let i=0; i<participantes.length; i++){
+            participantesSinDuplicar.add(participantes[i]);
+        }
+
+        let numeroDeParticipantes=0;
+        let hayParticipante120=false;
+        let hayParticipante110=false;
+        let texto="";
+        for(let participante of participantesSinDuplicar){
+
+            numeroDeParticipantes++;
+            
+            if(participante == 120){
+                hayParticipante120=true;
+            }
+
+            if(participante == 110){
+                hayParticipante110=true;
+            }
+        }
+
+        if(hayParticipante110 == true){
+            texto+="El participante 110 esta registrado,";
+        }else{
+            texto+="El participante 110 no esta registrado,";
+        }
+
+        if(hayParticipante120 == true){
+            texto+="El participante 120 esta registrado";
+        }else{
+            texto+="El participante 120 no esta registrado";
+        }
+
+        let arrayFinal=[...participantesSinDuplicar].join(", ");
+
+        document.getElementById("resultado").innerHTML=
+        "Participantes: " + arrayFinal + "<br>" + 
+        "Numero de participantes:" + numeroDeParticipantes + "<br>" +
+        texto;
+
+
+    }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generar()">Generar</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

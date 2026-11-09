@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let nums = [4,0,3,4,7,3,5,8,1,8,8,0,2,3,1,2,5,7,3,2,5,1]
+
+        function obtenerSinRepetidos(){
+           let numsSinRepetir=[];
+
+            for(let i=0; i<nums.length; i++){
+              let numero = nums[i];
+              //Si la variable numero no esta en el numsSinRepetir se añade el numero
+              if(!numsSinRepetir.includes(numero)){
+                numsSinRepetir.push(numero);
+              }
+            }
+
+            document.getElementById("areaMensaje").innerHTML=numsSinRepetir;
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="obtenerSinRepetidos()">Generar sin repetidos</button>
+    <div id="areaMensaje">
+
+    </div>
+</body>
+</html>

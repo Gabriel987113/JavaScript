@@ -1,0 +1,62 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Cifrado Polialfabético</title>
+
+    <script>
+        function cifrar(){
+
+            let mensaje = document.getElementById("mensaje").value;
+            let clave = document.getElementById("clave").value;
+            let mensajeCifrado = "";
+
+            let contador = 0;
+
+            for(let i=0; i<mensaje.length; i++){
+
+                let caracter = mensaje.charAt(i);
+
+                let numero = parseInt(clave.charAt(contador));
+
+                let codigo = caracter.charCodeAt(0) + numero;
+
+                mensajeCifrado += String.fromCharCode(codigo);
+
+                contador++;
+
+                if(contador >= clave.length){
+                    contador = 0;
+                }
+            }
+
+            document.getElementById("resultado").value = mensajeCifrado;
+        }
+    </script>
+</head>
+
+<body>
+
+    <h2>Cifrado Polialfabético</h2>
+
+    <label>Mensaje:</label>
+    <input type="text" id="mensaje">
+
+    <br><br>
+
+    <label>Clave numérica:</label>
+    <input type="text" id="clave">
+
+    <br><br>
+
+    <button type="button" onclick="cifrar()">Cifrar</button>
+
+    <br><br>
+
+    <label>Mensaje cifrado:</label>
+    <textarea id="resultado"></textarea>
+
+</body>
+</html>
+```

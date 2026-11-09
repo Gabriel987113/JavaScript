@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        Desarrolla un script que:
+        - Elimine los nombres repetidos.
+        - Muestre el array resultante.
+        - Mantenga el orden original de los nombres.
+        */
+
+       let numeros1 = [3, 8, 12, 5, 20, 7];
+       let numeros2 = [8, 4, 12, 9, 7, 15];
+
+       function generar(){
+
+        let nums = []
+
+        for(let i=0; i<numeros1.length; i++){
+            if(numeros2.includes(numeros1[i])){
+                nums.push(numeros1[i]);
+            }
+        }
+
+
+        document.getElementById("resultado").innerHTML=nums;
+       }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generar()">Generar</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

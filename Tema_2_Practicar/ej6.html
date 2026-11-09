@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        Desarrolla un script que:
+        1. Recorra el array.
+        2. Guarde en un nuevo array los precios superiores a 10 €.
+        3. Cuente cuántos productos cumplen esa condición.
+        4. Muestre los resultados.
+        */
+     let precios = [5, 12, 8, 25, 3, 18, 30, 7];
+
+     function generar(){
+        let contador=0;
+        let numsSuperiores10 = [];
+
+        for(let i=0; i<precios.length; i++){
+            if(precios[i]>10){
+               numsSuperiores10.push(precios[i]);
+               contador++;
+            }
+        }
+
+        document.getElementById("resultado").innerHTML=numsSuperiores10 +
+        " Contador:" +contador;
+     }
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generar()">GenerarArray</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

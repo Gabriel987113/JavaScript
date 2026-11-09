@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+       Desarrolla un script que:
+       1. Recorra el array.
+       2. Compruebe si existe algún producto con stock igual a 0.
+       3. Utilice una variable booleana (true o false).
+       4. Muestre uno de estos mensajes:
+       - Si hay algún producto con stock 0: «Hay productos agotados».
+       - Si ninguno tiene stock 0: «Todos los productos tienen existencias».
+        */
+     let stock = [5, 8, 0, 12, 3, 0, 7];
+
+     function generar(){
+        let hayStock = true;
+        let resultado="";
+
+        for(let i=0; i<stock.length; i++){
+           
+            if(stock[i]==0){
+                hayStock=false;
+                resultado+="El producto " +(i+1)+ " esta agotado" +"<br>";
+            }
+        }
+
+        if(!hayStock){
+            document.getElementById("resultado").innerHTML=resultado;
+        }
+
+
+     }
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generar()">GenerarArray</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>
