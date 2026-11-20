@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uso Input tipo radio y check</title>
+</head>
+<body>
+    <center>
+        <form action="" name="form-extras">
+            <table>
+             <tr><td><label for="">Nombre</label></td>
+             <td><input type="text" id="nombre"></td><td></td></tr>
+
+             <tr><td><label for="">Apellidos</label></td>
+             <td><input type="text" id="apellidos"></td><td></td></tr>
+
+             <tr><td><label for="">Forma de pago </label></td>
+             <td><input type="radio" name="gruporadio" value="Mensual">Mensual</td>
+             <td><input type="radio" name="gruporadio" value="Trimestral">Trimestral</td>
+             <td><input type="radio" name="gruporadio" value="anual">Anual</td></tr>
+
+             <tr><td><label for="">Accesorios</label></td>
+             <td><input type="checkbox" name="accesorios" value="Seguro">Todo riesgo</td>
+             <td><input type="checkbox" name="accesorios" value="Enchufable">Enchufable</td>
+             <td><input type="checkbox" name="accesorios" value="Aleacion">Llantas de aleación</td></tr>
+
+             <tr><td></td><td>
+                <input type="button" value="Ver selecciones" name="VER" onclick="VerSeleccion()"></td><td></td></tr>
+             <tr><td></td><td></td><td></td></tr>
+            </table>
+            <label for="">INFORME: </label><br><br>
+            <textarea name="pantalla" id="pantalla" cols="30" rows="10"></textarea>
+        </form>
+    </center>
+</body>
+<script>
+
+   function VerSeleccion(){
+    let nombre=document.getElementById("nombre").value;
+    let apellidos=document.getElementById("apellidos").value;
+    let formaDePago=document.getElementsByName("gruporadio");
+    let accesorios=document.getElementsByName("accesorios");
+    let resultado="";
+
+    resultado+="Los extras elegidos por " + nombre + " " + apellidos + " son";
+
+    for(let i=0; i<accesorios.length; i++){
+        if(accesorios[i].checked){
+            resultado+=accesorios[i].value + " ";       
+        }
+    }
+
+    for(let i=0; i<formaDePago.length; i++){
+        if(formaDePago[i].checked){
+            resultado+="Su forma de pago es:" + formaDePago[i].value;
+        }
+    }
+
+    document.getElementById("pantalla").value=resultado;
+
+   }
+</script>
+     
+</html>

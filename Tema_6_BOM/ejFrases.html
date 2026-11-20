@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        se introduce una frase, se genera un indice inicial aleatorio,
+        y luego otro boton para generar otro aleatorio pero deber serr
+        mayor que el 1 y luego el usuario debera introducir las
+        letras que haya del indice x al y para vlidarlo;
+        al dar validar hay que comparar si esta bien ,si esta bien mostrar queç
+        esta bien, si no no; y se reinciara todo para volver a intentarlo
+        aqui si hay boton para validar,hacerlo 1 con que introudzc LA FRASE
+        Y LUEGO OTRA VEZ PERO LAS FRASES DBERA ESTANR EN UN ARRY Y MOSTRARA UNA 
+        ALEATORIA.
+
+        */
+       let indiceAleatorio1;
+       let indiceAleatorio2;
+
+        function generarLetras() {
+            let frase = document.getElementById("frase").value;
+
+            do {
+                indiceAleatorio1 = Math.floor(Math.random() * frase.length);
+            } while (frase.charAt(indiceAleatorio1) == " ");
+
+           let primeraLetra = frase.charAt(indiceAleatorio1);
+           
+            do {
+                indiceAleatorio2 = Math.floor(Math.random() * frase.length);
+            } while (indiceAleatorio1 >= indiceAleatorio2 || frase.charAt(indiceAleatorio2) == " ");
+
+            let segundaLetra = frase.charAt(indiceAleatorio2);
+
+            document.getElementById("primeraLetra").value = primeraLetra;
+            document.getElementById("segundaLetra").value = segundaLetra;
+
+            document.getElementById("introduce").innerHTML =
+                "Introduce el texto entre la posicion " + primeraLetra + " y " + segundaLetra;
+        }
+
+        function compararFrases(){
+            let frase = document.getElementById("frase").value;
+
+            let textoCorrecto = frase.substring(indiceAleatorio1 + 1, indiceAleatorio2);
+
+            let respuesta = document.getElementById("fraseComparar").value;
+        }
+    </script>
+</head>
+
+<body>
+    <label>Introduce una frase</label>
+    <input type="text" id="frase"> <br><br>
+
+    <label>Primera letra generada:</label>
+    <input type="text" id="primeraLetra"> <br><br>
+
+    <label>Segunda Letra Generada</label>
+    <input type="text" id="segundaLetra"> <br><br>
+
+    <p id="introduce"></p>
+    <input type="text" id="fraseComparar">
+
+    <button type="button" onclick="generarLetras()">Generar Letras</button>
+    <button type="button" onclick="compararFrases()">Comparar Frase</button>
+    <div id="resultado">
+
+
+    </div>
+</body>
+
+</html>
