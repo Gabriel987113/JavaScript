@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+         onchange: cuando cambia el valor seleccionado.
+          hACER UN SELECT LISTA DE IMAGENES AL PUSLAR ESO
+          APARECEN 8 OPCIONES (TEXTO) Y LAS QUE SELECCIONEMOS
+          TENDRN QUE SALIR EN LA ETQIYETA <IMG>. hacerlo con onchange
+
+        */
+
+        function mostrarImagen(){
+
+           let seleccion = document.getElementById("imagenes");
+           for(let i=0; i<seleccion.options.length; i++){
+            if(seleccion.options[i].selected){
+                document.getElementById("resultado").src = seleccion.options[i].value;
+            }
+           }
+
+        }
+    </script>
+</head>
+<body>
+    <label>Selecciona una imagen:</label>
+
+<select id="imagenes" multiple onchange="mostrarImagen() ">
+    <option value="img/basket.png">Baloncesto</option>
+    <option value="img/futbol.png">Fútbol</option>
+    <option value="img/tenis.png">Tenis</option>
+    <option value="img/volley.png">Voleibol</option>
+</select>
+
+<br><br>
+
+<img id="resultado" src="" alt="Imagen seleccionada">
+</body>
+</html>

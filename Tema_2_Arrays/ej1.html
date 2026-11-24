@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let nums = [4, 0, 3, 4, 7, 3, 5, 8, 1, 8, 8, 0, 2, 3, 1, 2, 5, 7, 3, 2, 5, 1];
+        function obtener() {
+
+            let numsSinRepetir = [];
+
+            for (let i = 0; i < nums.length; i++) {
+                if (!numsSinRepetir.includes(nums[i])) {
+                    numsSinRepetir.push(nums[i]);
+                }
+            }
+
+            //DE menor a mayor
+            numsSinRepetir.sort(function (a, b) {
+                return a - b;
+            });
+
+            //DE MAYOR A MENOR
+            /*
+            numsSinRepetir.sort(function(a, b) {
+                return b - a;
+            });
+            */
+
+            //PARA ORDENAR ALFABETICAMNETE SIMPLEMENTE USAR .SORT();
+
+            document.getElementById("resultado").innerHTML = numsSinRepetir.join(", ");
+        }
+
+    </script>
+</head>
+
+<body>
+    <button type="button" onclick="obtener()">Obtener</button>
+    <div id="resultado"></div><br><br>
+
+
+</body>
+
+</html>

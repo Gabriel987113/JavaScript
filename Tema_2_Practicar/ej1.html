@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        Crea un array con los siguientes nombres:
+        let nombres = ["Ana", "Luis", "Marta", "Ana", "Pedro", "Luis", "Sara"];
+
+       Desarrolla un script que:
+      - Elimine los nombres repetidos.
+      - Muestre el array resultante.
+      - Mantenga el orden original de los nombres.
+      */
+     let nombres=["Ana", "Luis", "Marta", "Ana", "Pedro", "Luis", "Sara"];
+     
+     function generarArray(){
+        let nombresSinRepetir = new Set();
+        for(let i=0; i<nombres.length; i++){
+          nombresSinRepetir.add(nombres[i]);
+        }
+
+        let arrayFinal = [];
+        arrayFinal = [...nombresSinRepetir].join(", ");
+
+        /*
+        let arrayFinal = [...nombresSinRepetir];
+        let textoFinal = arrayFinal.join(", ");
+        */
+
+        document.getElementById("resultado").innerHTML=arrayFinal;
+     }
+    </script>
+</head>
+<body>
+    
+    <button type="button" onclick="generarArray()">Generar</button>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>

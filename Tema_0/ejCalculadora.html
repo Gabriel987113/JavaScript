@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+       function resetear(){
+        document.getElementById('resultado').value='';
+       }
+
+       function calcular(valorBoton){
+        let pantalla=document.getElementById('resultado');
+
+        if(valorBoton === "="){
+            pantalla.value = eval(pantalla.value);
+        }else{
+            pantalla.value=pantalla.value + valorBoton;
+        }
+       }
+
+    </script>
+</head>
+<body>
+    <h2>Calculadora basica</h2> <br><br>
+
+    <table>
+        <thead>
+            <tr>
+                <td><button type="button" id="reseteo" onclick="resetear()">C</button></td>
+                <td colspan="3"><input type="text" id="resultado"></td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="button" value="7" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="8" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="9" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="+" onclick="calcular(this.value)"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="4" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="5" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="6" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="-" onclick="calcular(this.value)"></td>
+            </tr>
+             <tr>
+                <td><input type="button" value="1" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="2" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="3" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="/" onclick="calcular(this.value)"></td>
+            </tr>
+             <tr>
+                <td><input type="button" value="0" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="." onclick="calcular(this.value)"></td>
+                <td><input type="button" value="=" onclick="calcular(this.value)"></td>
+                <td><input type="button" value="*" onclick="calcular(this.value)"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        para que se cumpla onchange:
+        Que cambie el valor del campo.
+        Que salgas del campo (por ejemplo, haciendo clic fuera o pulsando Tab).
+
+        getTime() siempre devuelve milisegundos. No tiene una opción para elegir segundos, 
+        minutos u horas.
+
+        Si quieres otra unidad, tienes que hacer las operaciones:
+        - Segundos : dividir entre 1000.
+        - Minutos : dividir entre 60000.
+        - Horas : dividir entre 3600000.
+        - Dias : dividir entre 86400000.
+        let hoyHoras = Math.floor(fechaActual.getTime() / 3600000);
+        */
+
+       // Fecha del ultimo acceso (simulamos que fue ayer)
+        let ultimoAcceso = new Date();
+        ultimoAcceso.setDate(ultimoAcceso.getDate() - 1);
+
+        function comprobarAcceso() {
+
+            let usuario = document.getElementById("usuario").value;
+
+            if (usuario != "") {
+
+                // Recoger la fecha actual
+                let fechaActual = new Date();
+
+                // Calcular la diferencia entre las dos fechas en milisegundos
+                let diferencia = fechaActual.getTime() - ultimoAcceso.getTime();
+
+                // Convertir milisegundos a dias, horas y minutos
+                let dias = Math.floor(diferencia / 86400000);
+                let horas = Math.floor((diferencia % 86400000) / 3600000);
+                let minutos = Math.floor((diferencia % 3600000) / 60000);
+
+                // Mostrar el tiempo transcurrido
+                document.getElementById("resultado").innerHTML =
+                    "Hola " + usuario + ". Tu ultimo acceso fue hace " +
+                    dias + " dias, " + horas + " horas y " + minutos + " minutos.";
+
+                // Actualizar la fecha del ultimo acceso
+                ultimoAcceso = fechaActual;
+            
+            }
+        }
+    </script>
+</head>
+<body>
+    <label>Usuario:</label>
+    <input type="text" id="usuario" onchange="comprobarAcceso()">
+
+    <p id="resultado"></p>
+
+</body>
+</html>

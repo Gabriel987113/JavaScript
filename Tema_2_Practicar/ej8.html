@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+      Una academia necesita una aplicación para controlar la asistencia de sus alumnos.
+
+      Disponemos de los siguientes datos:
+      let alumnos = ["Ana", "Luis", "Marta", "Pedro", "Lucia", "Carlos", "Sofia", "David"];
+      let asistencia = [true, false, true, true, false, true, false, true];
+
+
+      Cada posición del array asistencia corresponde al alumno que ocupa esa misma posición en el array alumnos.
+
+      Se pide crear una aplicación que realice lo siguiente:
+      1. Recorrer los arrays para comprobar qué alumnos han asistido y cuáles no.
+      2. Guardar en un nuevo array los nombres de los alumnos que han asistido.
+      3. Guardar en otro array los nombres de los alumnos que han faltado.
+      4. Mostrar el número total de alumnos que han asistido y el número de alumnos que han faltado.
+      5. Comprobar si un alumno introducido por el usuario ha asistido o ha faltado.
+      6. Mostrar un mensaje indicando si todos los alumnos han asistido o si ha faltado alguno.
+        */
+     
+      let alumnos = ["Ana", "Luis", "Marta", "Pedro", "Lucia", "Carlos", "Sofia", "David"];
+      let asistencia = [true, false, true, true, false, true, false, true];
+
+     function generarListaAlumnos(){
+
+        let asistidos = [];
+        let noAsistidos = [];
+
+        let contadorAsistidos=0;
+        let contadorNoAsistidos=0;
+
+        let alguienHaFaltado = false;
+
+
+        //GUARDAR QUIENES NO ASISTIERON
+        for(let i=0; i<asistencia.length; i++){
+
+            if(asistencia[i] == true){
+                asistidos.push(alumnos[i]);
+                contadorAsistidos++;
+            }else{
+                alguienHaFaltado=true;
+                noAsistidos.push(alumnos[i]);
+                contadorNoAsistidos++;
+            }
+        }
+
+        let mensaje="";
+        if(alguienHaFaltado==true){
+            mensaje="No han asistido todos";
+        }else{
+            mensaje="Han asistido todos";
+        }
+
+        document.getElementById("resultado").innerHTML=
+        "Alumnos asistidos:" + asistidos + " Numero de alumnos:" + contadorAsistidos + "<br>" +
+        "Alumnos no asistidos:" + noAsistidos + "Numero de alumnos:" + contadorNoAsistidos + "<br>" + 
+        mensaje + "<br>"
+
+     }
+
+     function buscarAlumno(){
+        let nombre=document.getElementById("nombreAlumno").value.trim().toLowerCase();
+        document.getElementById("nombreAlumno").value = ""; //limpiamos el input 
+
+        let alumnoEncontrado = false;
+        
+
+        if(nombre.trim()==""){
+            alert("Debes introducir un nombre");
+            return;
+        }
+
+        
+        for(let i=0; i<asistencia.length; i++){
+
+            if(nombre==alumnos[i].toLowerCase() && asistencia[i]==true){
+                alumnoEncontrado=true;
+                document.getElementById("busquedaAlumno").innerHTML=
+                "El alumno " + nombre + " ha asistido";
+                break;
+            }
+            
+            if(nombre==alumnos[i].toLowerCase() && asistencia[i]==false){
+                alumnoEncontrado=true;
+               document.getElementById("busquedaAlumno").innerHTML=
+               "El alumno " + nombre + " no ha asistido";
+               break;
+            }
+        }
+
+        if(!alumnoEncontrado){
+            alert("Ese alumno no esta registrado");
+            return;
+        }
+     }
+
+
+
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generarListaAlumnos()">Generrar Asistidos</button>
+    <br><br>
+
+    <div id="resultado">
+
+    </div>  <br><br>
+
+    <label>Introduce el nombre del alumno a buscar</label>
+    <input type="text" id="nombreAlumno"> <br><br>
+    <button type="button" onclick="buscarAlumno()">Buscar</button>
+
+    <div id="busquedaAlumno">
+
+    </div>
+    
+</body>
+</html>

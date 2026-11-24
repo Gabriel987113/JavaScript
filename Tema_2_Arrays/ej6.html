@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function comprobar() {
+        // RECOGEMOS LA FRASE INTRODUCIDA POR EL USUARIO.
+        let frase = document.getElementById("frase").value;
+
+        // CONVERTIMOS TODA LA FRASE A MINUSCULAS.
+        frase = frase.toLowerCase();
+
+        // CREAMOS EL ARRAY PARA GUARDAR LOS CARACTERES VALIDOS.
+        let fraseLimpia = [];
+
+        // SPLIT DIVIDE LA FRASE EN CARACTERES Y LOS GUARDA EN UN ARRAY.
+        // LO DIVIDE LETRA POR LETRA PORQUE PONEMOS "", PERO SI PONEMOS " ", SERIA PALABRA POR PALABRA.
+        let letras = frase.split("");
+
+        // RECORREMOS EL ARRAY DE LETRAS Y GUARDAMOS EN fraseLimpia LAS LETRAS Y NUMEROS VALIDOS.
+        for (let i = 0; i < letras.length; i++) {
+          // COMPROBAMOS SI EL CARACTER ES UNA LETRA ENTRE LA A Y LA Z O UN NUMERO ENTRE EL 0 Y EL 9.
+          if (
+            (letras[i] >= "a" && letras[i] <= "z") ||
+            (letras[i] >= "0" && letras[i] <= "9")
+          ) {
+            // SI ES VALIDO, LO AÑADIMOS AL ARRAY fraseLimpia.
+            fraseLimpia.push(letras[i]);
+          }
+        }
+
+        // SUPONEMOS INICIALMENTE QUE LA FRASE ES UN PALINDROMO.
+        let esPalindromo = true;
+
+        // RECORREMOS SOLAMENTE LA MITAD DEL ARRAY PORQUE COMPROBAMOS DESDE LOS DOS EXTREMOS.
+        for (let i = 0; i < fraseLimpia.length / 2; i++) {
+          // COMPARAMOS EL CARACTER ACTUAL CON EL CARACTER DE LA POSICION CONTRARIA.
+          if (fraseLimpia[i] != fraseLimpia[fraseLimpia.length - 1 - i]) {
+            // SI SON DIFERENTES, SIGNIFICA QUE NO ES UN PALINDROMO.
+            esPalindromo = false;
+
+            // DETENEMOS EL BUCLE PORQUE YA SABEMOS QUE NO ES UN PALINDROMO.
+            break;
+          }
+        }
+
+        if(esPalindromo){
+            document.getElementById("resultado").innerHTML="Es palindromo";
+        }else{
+            document.getElementById("resultado").innerHTML="No es palindromo";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <label>Introduce una frase:</label>
+    <input type="text" id="frase" /> <br /><br />
+
+    <button type="button" onclick="comprobar()">
+      Comprobar si es palindromo
+    </button>
+
+    <div id="resultado">
+
+    </div>
+  </body>
+</html>

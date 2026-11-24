@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Billetes y monedas</title>
+</head>
+<body>
+
+    <!-- Pedimos la cantidad de dinero -->
+    <label>Introduce una cantidad de dinero:</label>
+    <input type="number" id="dinero">
+
+    <!-- Al pulsar ejecutamos la función -->
+    <button type="button" onclick="meterDinero()">Meter dinero</button>
+
+    <h3>Desglose del dinero:</h3>
+
+    <!-- Tabla donde mostraremos los resultados -->
+    <table border="1">
+        <tr>
+            <th>Billete/Moneda</th>
+            <th>Cantidad</th>
+        </tr>
+
+        <tbody id="resultado"></tbody>
+    </table>
+
+    <script>
+
+        function meterDinero() {
+
+            // Recogemos el dinero introducido
+            let dinero = Number(document.getElementById("dinero").value);
+
+            // Array con los billetes y monedas
+            let billetes = [500, 200, 100, 50, 20, 10, 5, 1];
+
+            // Variable para guardar el resultado
+            let resultado = "";
+
+            // Recorremos todos los billetes
+            for (let i = 0; i < billetes.length; i++) {
+
+                // Calculamos cuántos billetes caben
+                let cantidad = Math.floor(dinero / billetes[i]);
+
+                // Calculamos el dinero que sobra
+                dinero = dinero % billetes[i];
+
+                // Añadimos una fila a la tabla
+                resultado += `
+                    <tr>
+                        <td>${billetes[i]} €</td>
+                        <td>${cantidad}</td>
+                    </tr>
+                `;
+            }
+
+            // Mostramos el resultado en la tabla
+            document.getElementById("resultado").innerHTML = resultado;
+
+        }
+
+    </script>
+
+</body>
+</html>

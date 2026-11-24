@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+      Crea una página web en JavaScript que permita al usuario introducir una frase en un campo de texto.
+      1. Al pulsar el botón Generar letras, se generarán dos posiciones aleatorias de la frase.
+      2. La segunda posición deberá ser siempre mayor que la primera.
+      3. Ninguna de las dos posiciones podrá corresponder a un espacio en blanco.
+      4. Se mostrarán en pantalla las letras que ocupan esas dos posiciones.
+      5. El usuario deberá escribir en otro campo el texto que hay entre esas dos letras, sin incluirlas.
+      6. Al pulsar Comparar, se comprobará si el texto introducido es correcto.
+      7. Si acierta, se mostrará un mensaje de correcto y se limpiarán los campos para poder empezar de nuevo.
+      8. Si falla, se mostrará un mensaje de incorrecto.
+
+        */
+        let indiceAleatorio1;
+        let indiceAleatorio2;
+
+        function generarLetras() {
+            let frase = document.getElementById("frase").value;
+
+            if (frase.trim() == "") {
+                alert("Debes introducir una frase");
+                return;
+            }
+
+            do {
+                indiceAleatorio1 = Math.floor(Math.random() * frase.length);
+            } while (frase.charAt(indiceAleatorio1) == " ");
+
+            let primeraLetra = frase.charAt(indiceAleatorio1);
+
+            do {
+                indiceAleatorio2 = Math.floor(Math.random() * frase.length);
+            } while (frase.charAt(indiceAleatorio2) == " " || indiceAleatorio2 <= indiceAleatorio1);
+
+            let segundaLetra = frase.charAt(indiceAleatorio2);
+
+            document.getElementById("primeraLetra").value = primeraLetra;
+            document.getElementById("segundaLetra").value = segundaLetra;
+            document.getElementById("introduce").innerHTML =
+                "Introduce el texto entre la posicion " + (indiceAleatorio1 + 1) + " y " + (indiceAleatorio2 + 1);
+        }
+
+
+
+        function compararFrases() {
+            if (indiceAleatorio1 == undefined || indiceAleatorio2 == undefined) {
+                alert("Primero debes generar las letras");
+                return;
+            }
+
+            let frase = document.getElementById("frase").value;
+
+            let respuesta = frase.substring(indiceAleatorio1 + 1, indiceAleatorio2);
+
+            let respuestaUsuario = document.getElementById("fraseComparar").value;
+
+            if (respuesta == respuestaUsuario) {
+                document.getElementById("resultado").innerHTML = "Correcto";
+
+                document.getElementById("frase").value = "";
+                document.getElementById("primeraLetra").value = "";
+                document.getElementById("segundaLetra").value = "";
+                document.getElementById("introduce").innerHTML = "";
+                document.getElementById("fraseComparar").value = "";
+
+                indiceAleatorio1 = undefined;
+                indiceAleatorio2 = undefined;
+            } else {
+                document.getElementById("resultado").innerHTML = "Incorrecto";
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <label>Introduce una frase</label>
+    <input type="text" id="frase"> <br><br>
+
+    <label>Primera letra generada:</label>
+    <input type="text" id="primeraLetra"> <br><br>
+
+    <label>Segunda Letra Generada</label>
+    <input type="text" id="segundaLetra"> <br><br>
+
+    <p id="introduce"></p>
+    <input type="text" id="fraseComparar">
+
+    <button type="button" onclick="generarLetras()">Generar Letras</button>
+    <button type="button" onclick="compararFrases()">Comparar Frase</button>
+    <div id="resultado">
+
+
+    </div>
+</body>
+
+</html>

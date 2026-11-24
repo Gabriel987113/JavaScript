@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+       Desarrolla un script que muestre los números que aparecen en uno 
+       de los arrays, pero no en ambos.
+        */
+       let array1 = [1, 2, 3, 4, 5, 6];
+       let array2 = [4, 5, 6, 7, 8, 9];
+
+       function mostrar(){
+        let nums1=[];
+        for(let i=0; i<array1.length; i++){
+            
+            if(!array2.includes(array1[i])){
+              nums1.push(array1[i]);
+            }
+        }
+
+        let nums2 = [];
+        for(let i=0; i<array2.length; i++){
+
+            if(!array1.includes(array2[i])){
+             nums2.push(array2[i]);
+            }
+        }
+
+        //concat sirve para unir dos arrays
+        let arrayFinal=nums1.concat(nums2);
+        document.getElementById("resultado").innerHTML=arrayFinal;
+
+        
+       }
+              
+    </script>
+</head>
+<body>
+    <button type="button" onclick="mostrar()">Generar</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

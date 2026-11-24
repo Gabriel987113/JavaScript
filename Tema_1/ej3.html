@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let numero;
+        
+
+        function calcularFactorial(){
+         
+            numero=document.getElementById("numero").value;
+            let factorial=1;
+
+            for(let i=numero; i>=1; i--){
+                factorial=factorial*i;
+            }
+
+            document.getElementById("resultado").innerHTML=
+            "Resultado: "+factorial;
+        }
+    </script>
+</head>
+<body>
+    <label>Introduce un numero</label>
+    <input type="number" id="numero">
+    <br><br>
+
+    <button type="button" onclick="calcularFactorial()">Enviar</button>
+    <br><br>
+
+    <p id="resultado"></p>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function mostrarAsignaturas() {
+            let asignaturasPrimero = document.getElementsByName("primero");
+            let asignaturasSegundo = document.getElementsByName("segundo");
+            let resultado = "";
+
+            resultado+="Asignaturas Primero: "
+            for (let i = 0; i < asignaturasPrimero.length; i++) {
+                if (asignaturasPrimero[i].checked) {
+                    resultado+=asignaturasPrimero[i].value + " "
+                }
+            }
+
+            resultado+="<br>" + "Asignaturas Segundo: "
+            for (let i = 0; i < asignaturasSegundo.length; i++) {
+                if (asignaturasSegundo[i].checked) {
+                    resultado += asignaturasSegundo[i].value + " ";
+                }
+            }
+
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+
+    </script>
+</head>
+
+<body>
+    <h1>Primer curso</h1>
+
+    <input type="checkbox" name="primero" value="Sistemas Informáticos">
+    <label>Sistemas Informáticos</label>
+
+    <input type="checkbox" name="primero" value="Programación">
+    <label>Programación</label>
+
+    <input type="checkbox" name="primero" value="BBDD">
+    <label>BBDD</label>
+
+    <input type="checkbox" name="primero" value="Lenguaje de Marcas">
+    <label>Lenguaje de Marcas</label>
+
+    <input type="checkbox" name="primero" value="Entornos">
+    <label>Entornos</label>
+
+
+    <h2>Segundo curso</h2>
+
+    <input type="checkbox" name="segundo" value="Cliente">
+    <label>Cliente</label>
+
+    <input type="checkbox" name="segundo" value="Servidor">
+    <label>Servidor</label>
+
+    <input type="checkbox" name="segundo" value="Interfaces">
+    <label>Interfaces</label>
+
+    <input type="checkbox" name="segundo" value="Ampliación">
+    <label>Ampliación</label>
+
+    <input type="checkbox" name="segundo" value="Digitalización">
+    <label>Digitalización</label>
+
+    <br><br>
+
+    <button type="button" onclick="mostrarAsignaturas()">Mostrar asignaturas</button>
+
+    <div id="resultado"></div>
+
+
+</body>
+
+</html>

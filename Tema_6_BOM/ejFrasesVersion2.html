@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+        Modifica el ejercicio anterior para que las frases no las introduzca el usuario, sino que estén guardadas previamente en un array.
+        1. Crea un array con varias frases.
+        2. Al comenzar el ejercicio, se seleccionará una frase aleatoria del array.
+        3. Se generarán dos posiciones aleatorias siguiendo las mismas condiciones que en el ejercicio anterior:
+        - La segunda posición será mayor que la primera.
+        - Ninguna posición corresponderá a un espacio en blanco.
+        4. Se mostrarán las dos letras correspondientes a esas posiciones.
+        5. El usuario deberá escribir el texto que hay entre ambas letras.
+        6. Al pulsar Comparar, se comprobará si la respuesta es correcta.
+        7. Si acierta, se mostrará un mensaje y se reiniciará el ejercicio utilizando otra frase aleatoria.
+        Diferencia principal: en la primera versión el usuario escribe la frase; en la segunda, JavaScript elige 
+        una frase aleatoria de un array.
+        */
+
+        let frases = ["Hola que tal", "Los enemigos se acercan", "Por ahi no es"];
+        let indiceAleatorio;
+        let indiceAleatorio2;
+
+        function generarLetras() {
+
+            let posicionAleatoria = Math.floor(Math.random() * frases.length);
+            let fraseAleatoria = frases[posicionAleatoria];
+
+            document.getElementById("fraseAleatoria").value = fraseAleatoria;
+
+            //GENERAR LOS INDICES ALEATORIOS
+            do {
+                indiceAleatorio = Math.floor(Math.random() * fraseAleatoria.length);
+            } while (fraseAleatoria.charAt(indiceAleatorio) == " ");
+
+            let primeraLetra = fraseAleatoria.charAt(indiceAleatorio);
+
+            do {
+                indiceAleatorio2 = Math.floor(Math.random() * fraseAleatoria.length);
+            } while (indiceAleatorio2 <= indiceAleatorio || fraseAleatoria.charAt(indiceAleatorio2) == " ");
+
+            let segundaletra = fraseAleatoria.charAt(indiceAleatorio2);
+
+            //MOSTRAR LAS LETRAS GENERADAS
+            document.getElementById("primerIndice").value = primeraLetra;
+            document.getElementById("segundoIndice").value = segundaletra;
+
+            //MOSTRAR EL TEXTO DE COMPARAR ENTREE LA LETRA X E Y
+            document.getElementById("mostrar").innerHTML =
+                "Introduce el texto entre la posicion " + (indiceAleatorio+1) + " y " + (indiceAleatorio2+1);
+        }
+
+        function compararLetras() {
+            if (indiceAleatorio == undefined || indiceAleatorio2 == undefined) {
+                alert("Primero debes generar las letras")
+                return;
+            }
+
+            let fraseAleatoria = document.getElementById("fraseAleatoria").value;
+
+            let textoCorrecto = fraseAleatoria.substring(indiceAleatorio + 1, indiceAleatorio2);
+            let respuestaUsuario = document.getElementById("respuesta").value;
+
+            if (textoCorrecto == respuestaUsuario) {
+                document.getElementById("resultado").innerHTML = "Correcto!";
+
+                document.getElementById("fraseAleatoria").value = "";
+                document.getElementById("primerIndice").value = "";
+                document.getElementById("respuesta").value = "";
+                document.getElementById("segundoIndice").value = "";
+
+
+                indiceAleatorio = undefined;
+                indiceAleatorio2 = undefined;
+
+                generarLetras();
+            } else {
+                document.getElementById("resultado").innerHTML = "Incorrecto!";
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <label>Frase aleatoria:</label>
+    <input type="text" id="fraseAleatoria"><br><br>
+
+    <label>Primer indice aleatorio</label>
+    <input type="text" id="primerIndice"> <br><br>
+
+    <label>Segundo indice aleatorio</label>
+    <input type="text" id="segundoIndice"> <br><br>
+
+    <p id="mostrar"></p>
+    <input type="text" id="respuesta"> <br><br>
+
+    <div id="resultado"></div> <br><br>
+
+    <button type="button" onclick="generarLetras()">generar Letras</button>
+    <button type="button" onclick="compararLetras()">Comparar las letras</button>
+
+
+
+
+</body>
+
+</html>

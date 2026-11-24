@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contador configurable</title>
+    <script>
+     function contando(){
+        let inicio=Number(document.getElementsByTagName("input")[0].value);
+        let final=Number(document.getElementsByTagName("input")[1].value);
+        let paso=Number(document.getElementsByTagName("input")[2].value);
+        let pantalla=document.getElementById("pantalla");
+
+        pantalla.value="";
+
+        if(paso==0){
+            alert("Debes introducir un numero que no sea 0")
+            return;
+        }
+
+        let resultado="";
+        if(inicio>=final){
+            while(inicio>=final){
+            resultado+="Cuenta: " + inicio + "\n";
+            inicio=inicio-paso;
+            }
+        }else{
+           while(final>=inicio){
+            resultado+="Cuenta: " + inicio  + "\n";
+            inicio=inicio+paso;
+           }
+        }
+
+        pantalla.value=resultado;
+
+     }
+    </script>
+</head>
+<body>
+    <h3>CONFIGURA TU PROPIO CONTADOR</h3><br>
+    <table>
+        <tr>
+            <td><label for="">Inicio: </label>
+                <input type="text" size="6" class="rango" autofocus></td><td>
+                <label for="">Final: </label>
+                <input type="text" size="6" class="rango"></td>
+        </tr>
+        <tr>
+
+        </tr>
+        <tr>
+            <td><label for="">Paso: </label>
+                <input type="text" size="6"></td><td></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="A CONTAR" onclick="contando()"></td><td></td>
+        </tr>
+    </table><br><br>
+
+    <h3>VISUALIZACIÓN DE LA CUENTA</h3>
+    <textarea id="pantalla" rows="10" cols="20"></textarea>   
+    
+</body>
+</html>

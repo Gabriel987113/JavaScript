@@ -1,0 +1,79 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>getElementsByTagName</title>
+
+    <script>
+
+        function mostrar() {
+
+            // Seleccionamos todos los input
+            let elementos = document.getElementsByTagName("input");
+
+            // Accedemos al primer input
+            //let primero = document.getElementsByTagName("input")[0].value;
+            let primero = elementos[0].value;
+
+            // Accedemos al segundo input
+            //let segundo = document.getElementsByTagName("input")[1].value;
+            let segundo = elementos[1].value;
+
+            // Mostramos los resultados
+            document.getElementById("resultado").innerHTML =
+                "Primer input: " + primero +
+                "<br>Segundo input: " + segundo;
+        }
+
+
+        function recorrer() {
+
+            // Seleccionamos todos los input
+            let elementos = document.getElementsByTagName("input");
+
+            // Recorremos todos los input
+            for (let i = 0; i < elementos.length; i++) {
+
+                alert(elementos[i].value);
+
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <!-- PRIMER INPUT: posición 0 -->
+    <label>Nombre:</label>
+    <input type="text" value="Juan">
+
+    <br><br>
+
+    <!-- SEGUNDO INPUT: posición 1 -->
+    <label>Edad:</label>
+    <input type="text" value="20">
+
+    <br><br>
+
+    <!-- TERCER INPUT: posición 2 -->
+    <label>Ciudad:</label>
+    <input type="text" value="Madrid">
+
+    <br><br>
+
+    <button type="button" onclick="mostrar()">
+        Mostrar primero y segundo
+    </button>
+
+    <button type="button" onclick="recorrer()">
+        Recorrer todos
+    </button>
+
+    <div id="resultado"></div>
+
+</body>
+</html>
+```

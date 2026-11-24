@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        /*
+       Desarrolla un script que:
+       1. Recorra el array y cree un nuevo array que contenga cada producto una sola vez, aunque se haya vendido varias veces.
+       2. Muestre ese nuevo array.
+       3. Muestre cuántos productos diferentes se han vendido en total.
+        */
+       //let numeros = new Set([4, 8, 12]);
+       let productos = ["Pan", "Leche", "Huevos", "Pan", "Queso", "Leche", "Yogur"];
+              
+       function mostrar(){
+       let productosSinRepetir = new Set();
+
+       for(let i=0; i<productos.length; i++){
+
+        productosSinRepetir.add(productos[i]);
+
+       }
+
+        let contador=0;
+        for (let producto of productosSinRepetir) {
+         contador++;
+        }
+
+        let arrayFinalProductos=[...productosSinRepetir].join(", ");
+
+        document.getElementById("resultado").innerHTML=
+        arrayFinalProductos + "<br>" + 
+        "Total productos vendidos " + contador;
+
+       }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="mostrar()">Generar</button>
+    <div id="resultado">
+
+    </div>
+    
+</body>
+</html>

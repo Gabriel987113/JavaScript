@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let contadores=[0,0,0,0,0,0,0,0,0,0];
+
+        function generarAleatorios(){
+           let numAleatorio;
+           //Lo ponemos deafault para cuando lo queeramos volver a hacer que no se junte lo anterior
+           contadores=[0,0,0,0,0,0,0,0,0,0];
+
+           for(let i=0; i<100; i++){
+               numAleatorio=Math.floor(Math.random() * (10-1+1))+1;
+           
+                contadores[numAleatorio -1]++;
+            }
+
+            //CREAR LA TABLA
+            let tabla = "<table border='1'>" +
+            "<tr><th colspan='2'>FRECUENCIAS</th></tr>";
+
+            for(let i=0; i<contadores.length; i++){
+            tabla += "<tr><td>Número " + (i+1) + "</td><td>" + contadores[i] + "</td></tr>";
+            }
+
+            tabla += "</table>";
+
+           document.getElementById("resultado").innerHTML = tabla;
+        }
+    </script>
+</head>
+<body>
+    <button type="button" onclick="generarAleatorios()">GenerarAleatorios</button>
+    <div id="resultado">
+
+    </div>
+</body>
+</html>

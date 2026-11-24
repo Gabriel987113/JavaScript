@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+      function comprobar(){
+
+        let año=Number(document.getElementById("año").value);
+        let mes=Number(document.getElementById("mes").value);
+        let dia=Number(document.getElementById("dia").value);
+
+        //CREAR FECHA DE HOY Y SUS MILISEGUNDOS
+       let hoy = new Date(); //al crearlo sin parametros se le asigna por defecto la fecha de hoy.
+       let milisegundosFechaHoy=hoy.getTime(); //getTime sirve para obtener su valor en milisegundos.
+       
+       //CREAR FECHA DE NACIMIENTO Y SUS MILISEGUNDOS
+       let nacimiento = new Date(año, mes - 1, dia); //se resta 1 en el mes porque se empieza desde el 0.
+       let milisegundosFechaNacimiento = nacimiento.getTime();
+
+       //SABER CUANTO SON 18 EN MILISEGUNDOS.
+       let fecha18 = new Date(año + 18, mes - 1, dia);//sumamaos 18 al año de nacimiento.
+       let fecha18Milisegundos = fecha18.getTime();
+
+       //CREAR EL MENSAJE
+       let mensajeEdad;
+       if(milisegundosFechaHoy >= fecha18Milisegundos){
+         mensajeEdad = "Es mayor de 18";
+       }else{
+        mensajeEdad = "Es menor de 18";
+       }
+
+       document.getElementById("areaMensaje").innerHTML = "Resultado: " + mensajeEdad;
+
+       /*
+         Si alguien cumple 18 años el 15/06/2028 y hoy estamos a 31/10/2026, 
+         ¿que fecha tendra mas milisegundos: hoy o su cumpleaños numero 18?
+       */
+      }
+
+    </script>
+</head>
+<body>
+    <h2>Edad</h2> <br><br>
+
+    <label>Año</label>
+    <input type="number" id="año">
+
+    <label>Mes</label>
+    <input type="number" id="mes">
+
+    <label>Dia</label>
+    <input type="number" id="dia">  <br><br>
+
+    <button type="button" onclick="comprobar()">Comprobar</button>
+
+
+
+    <div id="areaMensaje">
+       
+    </div>
+</body>
+</html>

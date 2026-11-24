@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let numero;
+    function intentar(){
+
+         numero=Math.floor(Math.random() * (10 - 0 + 1))- 0;        
+         document.getElementById("numero").value=numero;
+
+        if(numero==5){
+            alert("Has ganadado!!, ha salido el numero " + numero);
+            return;
+        }else{
+            alert("Sigue intentandolo");
+        }
+    }
+
+
+    function reintentar(){
+      
+        numero=0;
+    }
+
+
+    </script>
+</head>
+<body>
+  
+<label>Numero aleatorrio, si sale el 5 ganaste!!</label>
+<input type="number" id="numero">
+
+<br><br>
+
+<button type="button" onclick="intentar()">Intentar</button>
+<button type="button" onclick="reintentar()">Reintentar</button>
+
+</body>
+</html>

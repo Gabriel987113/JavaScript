@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      let letraAleatoria;
+      function ver() {
+        let frase = document.getElementById("frase").value;
+
+        if (frase.trim() == "") {
+          alert("Debes introducir texto");
+          return;
+        }
+
+        let numeroAleatorio = Math.floor(Math.random() * frase.length);
+
+        letraAleatoria = frase.charAt(numeroAleatorio);
+
+        document.getElementById("letra").value = letraAleatoria;
+
+        if (letraAleatoria == letraParada) {
+          alert("Has ganado, ha salido " + letraParada);
+          document.getElementById("frase").value = "";
+          document.getElementById("letra").value = "";
+          document.getElementById("letraParada").value = "";
+          document.getElementById("ver").disabled = true;
+          return;
+        }
+      }
+
+      let letraParada;
+      function parada() {
+        let frase = document.getElementById("frase").value;
+        if (frase.trim() == "") {
+          alert("Debes introducir texto");
+          return;
+        }
+
+        let numeroAleatorio = Math.floor(Math.random() * frase.length);
+
+        letraParada = frase.charAt(numeroAleatorio);
+
+        document.getElementById("letraParada").value = letraParada;
+
+        document.getElementById("ver").disabled = false;
+      }
+    </script>
+  </head>
+  <body>
+    <label>Introduce una frase</label>
+    <input type="text" id="frase" />
+    <button type="button" onclick="ver()" id="ver" disabled>Ver</button>
+    <button type="button" onclick="parada()">Generar Parada</button><br /><br />
+
+    <label>Letra aleatoria de la frase</label>
+    <input type="text" id="letra" />
+
+    <label>Caracter de parada</label>
+    <input type="text" id="letraParada" />
+  </body>
+</html>

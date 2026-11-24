@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function generarLoteria() {
+      document.getElementById("apuestas").innerHTML="";
+      document.getElementById("combinacionGanadora").innerHTML="";
+      document.getElementById("ganador").innerHTML="";
+
+      //GENERAR LOS 50 SET CON 6 NUMEROS ALEATORIOS
+        let nums = [];
+
+        for (let i = 0; i < 50; i++) {
+          let numsVacios = new Set();
+
+          while (numsVacios.size < 6) {
+            let numAleatorio = Math.floor(Math.random() * (49 - 1 + 1)) + 1;
+            numsVacios.add(numAleatorio);
+          }
+
+          nums.push(numsVacios);
+        }
+
+      //GENERAR LA COMBINACION GANADORA
+        let combinacionGanadora = new Set();
+        for (let i = 0; i < 6; i++) {
+          while (combinacionGanadora.size < 6) {
+            let numAleatorio = Math.floor(Math.random() * (49 - 1 + 1)) + 1;
+            combinacionGanadora.add(numAleatorio);
+          }
+        }
+
+      //COMPARAR LAS APUESTAS CON LA COMBINACION GANADORA PARA SABER SI ALGUIEN HA GANADO
+        /*
+          i = 0: nums[0] es el primer Set, con 6 números. El bucle de dentro los comprueba uno a uno contra la ganadora y cuenta los aciertos.
+          Termina esa apuesta. Aquí es donde tienes que usar los aciertos (mostrarlos y mirar si son 6), antes de pasar a la siguiente.
+          i = 1: nums[1] es otro Set con otros 6 números. aciertos vuelve a 0 y se repite todo.
+          Así hasta i = 49, la apuesta número 50.
+
+        */
+        let hayGanador=false;
+        let textoApuestas="";
+        for (let i = 0; i < nums.length; i++) {
+          let aciertos = 0;
+
+          for (let numero of nums[i]) {
+            if (combinacionGanadora.has(numero)) {
+              aciertos++;
+            }
+          }
+
+          textoApuestas+="Jugador " + (i+1) + ": " + [...nums[i]].join(", ") + "<br>";
+
+          if(aciertos==6){
+            document.getElementById("ganador").innerHTML="ganador jugador " + (i+1);
+            hayGanador=true;
+          }
+        }
+
+       
+        if(!hayGanador){
+          document.getElementById("ganador").innerHTML="No hubo ganador";
+        }
+
+      //MOSTRAR LOS RESULTADOS
+      document.getElementById("apuestas").innerHTML=textoApuestas;
+      document.getElementById("combinacionGanadora").innerHTML=
+      "Combinacion ganadora: " + [...combinacionGanadora].join(", ");
+      
+      /*
+      Para comparar o recorrer un Set: for...of y has, sin convertir.
+      Para mostrar un Set en pantalla: spread + join.
+      */
+      }
+    </script>
+  </head>
+  <body>
+    <button type="button" onclick="generarLoteria()">Generar Loteria</button>
+    <div id="apuestas"></div>
+    <br /><br />
+
+    <div id="combinacionGanadora"></div>
+    <br /><br />
+
+    <div id="ganador"></div>
+  </body>
+</html>
